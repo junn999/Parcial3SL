@@ -20,12 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            echo "Login exitoso";
+            header("Location: bienvenida.php");
+            exit();
         } else {
-            echo "Contraseña incorrecta";
+            echo "<script>alert('Contraseña incorrecta'); window.location.href = 'index.php';</script>";
         }
     } else {
-        echo "No existe el usuario";
+        echo "<script>alert('No existe el usuario'); window.location.href = 'index.php';</script>";
     }
 }
 
